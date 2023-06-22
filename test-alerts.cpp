@@ -30,6 +30,5 @@ TEST_CASE("classifyTemperature breach according to limits 3") {
 TEST_CASE("checkAndAlert 1") {
   BatteryCharacter batteryChar;
   batteryChar.coolingType = PASSIVE_COOLING;
-  batteryChar.brand = "amaron";
   REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar,-1) == TOO_LOW); //inferBreach(-1, 0, 35)
 }
