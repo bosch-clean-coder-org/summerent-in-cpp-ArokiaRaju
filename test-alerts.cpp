@@ -32,3 +32,15 @@ TEST_CASE("checkAndAlert 1") {
   batteryChar.coolingType = PASSIVE_COOLING;
   REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar,-1) == TOO_LOW); //inferBreach(-1, 0, 35)
 }
+
+TEST_CASE("checkAndAlert 2") {
+  BatteryCharacter batteryChar;
+  batteryChar.coolingType = HI_ACTIVE_COOLING;
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar,50) == TOO_HIGH); //inferBreach(50, 0, 45)
+}
+
+TEST_CASE("checkAndAlert 3") {
+  BatteryCharacter batteryChar;
+  batteryChar.coolingType = MED_ACTIVE_COOLING;
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar,30) == NORMAL); //inferBreach(30, 0, 40)
+}
