@@ -62,3 +62,7 @@ TEST_CASE("checkAndAlert 6") {
   batteryChar.coolingType = MED_ACTIVE_COOLING;
   REQUIRE(checkAndAlert(TO_EMAIL, batteryChar,30) == NORMAL); //inferBreach(30, 0, 40)
 }
+
+TEST_CASE("sendToEmail 1") {
+  REQUIRE(sendToEmail(4) == true); //inferBreach(30, 0, 40)
+}
