@@ -11,7 +11,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) { //0
   return NORMAL;
 }
 
-/*
+
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
   int lowerLimit = 0;
@@ -31,8 +31,9 @@ BreachType classifyTemperatureBreach(
       break;
   }
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
-} */
+} 
 
+/*
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
   int lowerLimit = 0;
@@ -56,6 +57,7 @@ int getUpperLimit(CoolingType coolingType)
   }
   return upperLimit;
 }
+*/
 
 BreachType checkAndAlert(
     AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
@@ -98,3 +100,20 @@ bool sendToEmail(BreachType breachType) {
   }
   return true;
 }
+
+/*
+bool sendToEmail(BreachType breachType) {
+  const char* recepient = "a.b@c.com";
+  if (breachType == TOO_LOW || breachType == TOO_HIGH)
+  {
+      printf("To: %s\n", recepient);
+      printf("Hi, the temperature is too low\n");  
+  }
+  else if (breachType == TOO_HIGH)
+  {
+      printf("To: %s\n", recepient);
+      printf("Hi, the temperature is too high\n");  
+  }
+  return true;
+}
+*/
