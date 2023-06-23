@@ -1,7 +1,7 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
-BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
+BreachType inferBreach(double value, double lowerLimit, double upperLimit) { //0, 0, 45
   if(value < lowerLimit) {
     return TOO_LOW;
   }
@@ -10,6 +10,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   }
   return NORMAL;
 }
+
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
@@ -24,15 +25,15 @@ BreachType classifyTemperatureBreach(
       lowerLimit = 0;
       upperLimit = 45;
       break;
-    case MED_ACTIVE_COOLING:
+    default:
       lowerLimit = 0;
       upperLimit = 40;
       break;
   }
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
-}
+} 
 
-void checkAndAlert(
+BreachType checkAndAlert(
     AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
   BreachType breachType = classifyTemperatureBreach(
@@ -43,29 +44,30 @@ void checkAndAlert(
     case TO_CONTROLLER:
       sendToController(breachType);
       break;
-    case TO_EMAIL:
+   default:
       sendToEmail(breachType);
       break;
   }
+  return breachType;
 }
 
-void sendToController(BreachType breachType) {
+bool sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
+  return true;
 }
 
-void sendToEmail(BreachType breachType) {
+bool sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  switch(breachType) {
-    case TOO_LOW:
+  if (breachType == TOO_LOW)
+  {
       printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too low\n");
-      break;
-    case TOO_HIGH:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      break;
+      printf("Hi, the temperature is too low\n");  
   }
+  else if (breachType == TOO_HIGH)
+  {
+      printf("To: %s\n", recepient);
+      printf("Hi, the temperature is too high\n");  
+  }
+  return true;
 }
