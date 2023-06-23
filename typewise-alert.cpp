@@ -70,7 +70,7 @@ BreachType checkAndAlert(
     case TO_CONTROLLER:
       sendToController(breachType);
       break;
-    case TO_EMAIL:
+   default:
       sendToEmail(breachType);
       break;
   }
