@@ -83,7 +83,7 @@ bool sendToController(BreachType breachType) {
   return true;
 }
 
-
+/*
 bool sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   switch(breachType) {
@@ -100,11 +100,11 @@ bool sendToEmail(BreachType breachType) {
   }
   return true;
 }
+*/
 
-/*
 bool sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  if (breachType == TOO_LOW || breachType == TOO_HIGH)
+  if (breachType == TOO_LOW)
   {
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too low\n");  
@@ -116,4 +116,3 @@ bool sendToEmail(BreachType breachType) {
   }
   return true;
 }
-*/
