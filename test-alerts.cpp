@@ -17,16 +17,17 @@ BreachType classifyTemperatureBreach(
   int upperLimit = 0;
   switch(coolingType) {
     case PASSIVE_COOLING:
+      lowerLimit = 0;
       upperLimit = 35;
       break;
     case HI_ACTIVE_COOLING:
+      lowerLimit = 0;
       upperLimit = 45;
       break;
     case MED_ACTIVE_COOLING:
+      lowerLimit = 0;
       upperLimit = 40;
       break;
-    default :
-      printf("exception");
   }
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
@@ -45,8 +46,6 @@ BreachType checkAndAlert(
     case TO_EMAIL:
       sendToEmail(breachType);
       break;
-    default :
-      printf("exception");
   }
   return breachType;
 }
@@ -68,10 +67,8 @@ bool sendToEmail(BreachType breachType) {
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too high\n");
       break;
-    case NORMAL:
+    case default:
       break;
-    default :
-      printf("exception");
   }
   return true;
 }
